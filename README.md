@@ -7,7 +7,7 @@ This website is to generate unique passwords that contain any or all of the foll
 This website was challenge 03 of Winter 2021 UCF's Full Stack boot camp.  The purpose of this assigment was to create a password generator that accepts user defined critera.
 
 ## Website Preview
-![alt text](https://github.com/sboucher2011/challenge03/blob/main/assets/images/website_image_for_readme.png)
+![alt text](https://github.com/sboucher2011/challenge03/blob/main/Develop/assets/images/website_image_for_readme.png)
 
 ## Built With
 * HTML

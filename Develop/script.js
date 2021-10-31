@@ -1,12 +1,21 @@
+
 //-----------------------------------------------
 // Variable Setup
 //-----------------------------------------------
 var length = 8;
-var upper = true;
-var lower = true;
-var number = true;
-var symbol = true;
+var upper = 'true';
+var lower = 'true';
+var number = 'true';
+var symbol = 'true';
 var passwordArray = [];
+
+//-----------------------------------------------
+// Function to Create Random Numbers
+//-----------------------------------------------
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  return value;
+};
 
 //-----------------------------------------------
 // Generate Random Variable for Selected Criteria
@@ -15,20 +24,30 @@ function generateVariable(selector) {
   switch(selector) {
     //uppercase generation
     case 'upperCase':
-      passwordArray.push("A");
+      //ASCII 65-90
+      var randUpper = randomNumber(65,90);
+      passwordArray.push(String.fromCharCode(randUpper));
       break;
+
     //lowercase generation
     case 'lowerCase':
-      passwordArray.push("b");
+      //ASCII 97-122
+      var randLow = randomNumber(97,122)
+      passwordArray.push(String.fromCharCode(randLow));
       break;
+
     //number generation
     case 'numbers':
-      passwordArray.push('3');
+      // Create Random Number Between 0 and 9
+      var randNum = randomNumber(0,9)
+      passwordArray.push(randNum);
       break;
 
     //symbol generation
     default: 
-      passwordArray.push('!')
+      const symbolOptions = '!@#$%^&*(){}[]=<>/,.'
+      var randSym = randomNumber(0,symbolOptions.length);
+      passwordArray.push(symbolOptions[randSym])
       break;
   }
 }
@@ -41,11 +60,23 @@ function generateVariable(selector) {
 // Generate Passowrd Based on User Input
 //-----------------------------------------------
 function generatePassword() {
+  for(var i = 0; i < length; i++) {
+    if (upper === 'true') {
+      generateVariable('upperCase');
+    }
+    
+    if (lower === 'true') {
+      generateVariable('lowerCase');
+    }
   
-  generateVariable('upperCase');
-  generateVariable('lowerCase');
-  generateVariable('numbers');
-  generateVariable('symbols')
+    if (number === 'true') {
+      generateVariable('numbers');
+    }
+  
+    if (symbol === 'true') {
+      generateVariable('symbols');
+    }
+  }
 
   //print to the screen withouth any charecters in array
   return passwordArray.join("");
@@ -60,6 +91,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+  passwordArray = [] //reset the array
   passwordText.value = password;
 
 }
