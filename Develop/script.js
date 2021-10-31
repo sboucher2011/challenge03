@@ -2,7 +2,7 @@
 //-----------------------------------------------
 // Variable Setup
 //-----------------------------------------------
-var length = 8;
+var length = 25;
 var upper = 'true';
 var lower = 'true';
 var number = 'true';
@@ -53,14 +53,17 @@ function generateVariable(selector) {
 }
 
 //-----------------------------------------------
-// Randomize Array
+// Randomize & Check Array
 //-----------------------------------------------
+function Randomize() {
+
+}
 
 //-----------------------------------------------
 // Generate Passowrd Based on User Input
 //-----------------------------------------------
 function generatePassword() {
-  for(var i = 0; i < length; i++) {
+  for(var i = 0; i < length; i+=4) {
     if (upper === 'true') {
       generateVariable('upperCase');
     }
@@ -78,8 +81,12 @@ function generatePassword() {
     }
   }
 
-  //print to the screen withouth any charecters in array
-  return passwordArray.join("");
+  //randomize password
+  Randomize();
+
+  //print to the screen withouth any charecters in array and ensure length is correct since 
+  //if odd number is selected length will be too long
+  return passwordArray.join("").slice(0,length);
 }
 
 //KEEP ALL OF THIS
@@ -92,8 +99,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordArray = [] //reset the array
-  passwordText.value = password;
-
+  passwordText.value = password//.slice(0,length); //verify password is correct length
 }
 
 // Add event listener to generate button
