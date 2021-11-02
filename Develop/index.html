@@ -25,10 +25,50 @@
           ></textarea>
         </div>
         <div class="card-footer">
-          <button id="generate" onclick="openWindow()" class="btn">Generate Password</button>
+          <button id="generate" class="btn">Generate Password</button>
         </div>
       </div>
     </div>
+
+    <!-- Popup Box -->
+    <div class="popUp">
+      <div class="popUp-Container">
+        <h2>Password Options:</h2>
+        <div class="checkbox-container">
+          <div>
+            <input type="checkbox" class="checkboxOption" onclick="addLowercase();" id="lower-checkbox" />
+            <label for="checkbox">Lowercase Letters</label>
+          </div>
+
+          <div>
+            <input type="checkbox" class="checkboxOption" onclick="addUppercase();" id="upper-checkbox" />
+            <label for="checkbox">Uppercase Letters</label>
+          </div>
+
+          <div>
+            <input type="checkbox" class="checkboxOption" onclick="addSymbols();" id="symbols-checkbox" />
+            <label for="checkbox">Symbols</label>
+          </div>
+
+          <div>
+            <input type="checkbox" class="checkboxOption" onclick="addNumbers();" id="numbers-checkbox" />
+            <label for="checkbox">Numbers</label>
+          </div>
+        </div>
+
+        <div class="charecter-container">
+          <label for="charecter-count">Password length:</label>
+          <input type="count" placeholder="Must be between 8 - 128 characters" name="charecter-count" class="count-input"/>
+        </div>
+
+        <div class="generate-button">
+          <button type="submit" class="cancel-button">Cancel</button>
+          <button type="submit" class="generate-now-button">Generate Now!</button>
+        </div>
+
+      </div>
+   </div>
+
     <script src="script.js"></script>
   </body>
 </html>

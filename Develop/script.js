@@ -2,11 +2,11 @@
 //-----------------------------------------------
 // Variable Setup
 //-----------------------------------------------
-var length = 25;
-var upper = 'true';
-var lower = 'true';
-var number = 'true';
-var symbol = 'true';
+var length = 5;
+var upper = 'false';
+var lower = 'false';
+var number = 'false';
+var symbol = 'false';
 var passwordArray = [];
 
 //-----------------------------------------------
@@ -53,13 +53,6 @@ function generateVariable(selector) {
 }
 
 //-----------------------------------------------
-// Randomize & Check Array
-//-----------------------------------------------
-function Randomize() {
-
-}
-
-//-----------------------------------------------
 // Generate Passowrd Based on User Input
 //-----------------------------------------------
 function generatePassword() {
@@ -81,15 +74,61 @@ function generatePassword() {
     }
   }
 
-  //randomize password
-  Randomize();
-
   //print to the screen withouth any charecters in array and ensure length is correct since 
   //if odd number is selected length will be too long
   return passwordArray.join("").slice(0,length);
 }
 
-//KEEP ALL OF THIS
+//-----------------------------------------------
+// Popup Box Features
+//-----------------------------------------------
+function popUp() {
+  document.querySelector(".popUp").style.display = "flex";
+}
+
+function closePopUp() {
+  console.log("no");
+  document.querySelector(".popUp").style.display = "none";
+}
+
+//-----------------------------------------------
+// Password Options
+//-----------------------------------------------
+function addLowercase() {
+  if(lower === 'false') {
+    lower = 'true';
+  } else {
+    lower = 'false'
+  }
+}
+
+function addUppercase() {
+  if(upper === 'false') {
+    upper = 'true';
+  } else {
+    upper = 'false'
+  }
+}
+
+function addSymbols() {
+  if(symbol === 'false') {
+    symbol = 'true';
+  } else {
+    symbol = 'false'
+  }
+}
+
+function addNumbers() {
+  if(number === 'false') {
+    number = 'true';
+  } else {
+    number = 'false'
+  }
+}
+
+//-----------------------------------------------
+// Initialize
+//-----------------------------------------------
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -100,32 +139,14 @@ function writePassword() {
 
   passwordArray = [] //reset the array
   passwordText.value = password//.slice(0,length); //verify password is correct length
+
+  closePopUp();
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-//END OF KEEP ALL OF THIS
+generateBtn.addEventListener("click", popUp);
+document.querySelector(".cancel-button").addEventListener("click", closePopUp);
+document.querySelector(".generate-now-button").addEventListener("click", writePassword);
 
-
-
-// POPUP - 
-/*
-function openWindow() {
-  var i, l, options = [{
-     value: 'first',
-     text: 'First'
-  }, {
-     value: 'second',
-     text: 'Second'
-  }],
-  newWindow = window.open("", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");  
-
-  newWindow.document.write("<select onchange='window.opener.setValue(this.value);'>");
-  for(i=0,l=options.length; i<l; i++) {
-      newWindow.document.write("<option value='"+options[i].value+"'>");  
-      newWindow.document.write(options[i].text);  
-      newWindow.document.write("</option>");
-  }
-  newWindow.document.write("</select>");
-}
-*/
+var userLength = document.querySelector(".count-input").value;
+console.log(userLength);
