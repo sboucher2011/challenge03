@@ -2,7 +2,8 @@
 //-----------------------------------------------
 // Variable Setup
 //-----------------------------------------------
-var length = 5;
+var length = 0;
+var counter = 0;
 var upper = 'false';
 var lower = 'false';
 var number = 'false';
@@ -58,36 +59,41 @@ function generateVariable(selector) {
 //-----------------------------------------------
 function generatePassword() {
 
-  //check length and assign
-  if(lengthEl.value >=8 && lengthEl.value <= 128) {
-    length = lengthEl.value;
+  //verify that something is selected 
+  if(counter !== 0) {
+    //check length and assign
+    if(lengthEl.value >=8 && lengthEl.value <= 128) {
+      length = lengthEl.value;
 
-    for(var i = 0; i < length; i+=4) {
-      if (upper === 'true') {
-        generateVariable('upperCase');
-      }
+      for(var i = 0; i < length; i+=counter) {
+        if (upper === 'true') {
+          generateVariable('upperCase');
+        }
+        
+        if (lower === 'true') {
+          generateVariable('lowerCase');
+        }
       
-      if (lower === 'true') {
-        generateVariable('lowerCase');
+        if (number === 'true') {
+          generateVariable('numbers');
+        }
+      
+        if (symbol === 'true') {
+          generateVariable('symbols');
+        }
       }
     
-      if (number === 'true') {
-        generateVariable('numbers');
-      }
-    
-      if (symbol === 'true') {
-        generateVariable('symbols');
-      }
+      //print to the screen withouth any charecters in array and ensure length is correct since 
+      //if odd number is selected length will be too long
+      return passwordArray.join("").slice(0,length);
+    } else {
+      alert("Password length must be between 8 to 128 characters")
     }
-  
-    //print to the screen withouth any charecters in array and ensure length is correct since 
-    //if odd number is selected length will be too long
-    return passwordArray.join("").slice(0,length);
   } else {
-    alert("Password length must be between 8 to 128 characters")
+      alert("Please select at least one option!")
   }
-
 }
+
 
 //-----------------------------------------------
 // Popup Box Features
@@ -106,32 +112,40 @@ function closePopUp() {
 function addLowercase() {
   if(lower === 'false') {
     lower = 'true';
+    counter++;
   } else {
     lower = 'false'
+    counter--;
   }
 }
 
 function addUppercase() {
   if(upper === 'false') {
     upper = 'true';
+    counter++;
   } else {
     upper = 'false'
+    counter--;
   }
 }
 
 function addSymbols() {
   if(symbol === 'false') {
     symbol = 'true';
+    counter++;
   } else {
     symbol = 'false'
+    counter--;
   }
 }
 
 function addNumbers() {
   if(number === 'false') {
     number = 'true';
+    counter++;
   } else {
     number = 'false'
+    counter--;
   }
 }
 
@@ -147,7 +161,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordArray = [] //reset the array
-  passwordText.value = password//.slice(0,length); //verify password is correct length
+  passwordText.value = password
 
   closePopUp();
 }
