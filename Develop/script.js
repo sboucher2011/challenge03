@@ -8,6 +8,7 @@ var lower = 'false';
 var number = 'false';
 var symbol = 'false';
 var passwordArray = [];
+var lengthEl = document.getElementById('charecter-count');
 
 //-----------------------------------------------
 // Function to Create Random Numbers
@@ -56,27 +57,36 @@ function generateVariable(selector) {
 // Generate Passowrd Based on User Input
 //-----------------------------------------------
 function generatePassword() {
-  for(var i = 0; i < length; i+=4) {
-    if (upper === 'true') {
-      generateVariable('upperCase');
-    }
+
+  //check length and assign
+  if(lengthEl.value >=8 && lengthEl.value <= 128) {
+    length = lengthEl.value;
+
+    for(var i = 0; i < length; i+=4) {
+      if (upper === 'true') {
+        generateVariable('upperCase');
+      }
+      
+      if (lower === 'true') {
+        generateVariable('lowerCase');
+      }
     
-    if (lower === 'true') {
-      generateVariable('lowerCase');
+      if (number === 'true') {
+        generateVariable('numbers');
+      }
+    
+      if (symbol === 'true') {
+        generateVariable('symbols');
+      }
     }
   
-    if (number === 'true') {
-      generateVariable('numbers');
-    }
-  
-    if (symbol === 'true') {
-      generateVariable('symbols');
-    }
+    //print to the screen withouth any charecters in array and ensure length is correct since 
+    //if odd number is selected length will be too long
+    return passwordArray.join("").slice(0,length);
+  } else {
+    alert("Password length must be between 8 to 128 characters")
   }
 
-  //print to the screen withouth any charecters in array and ensure length is correct since 
-  //if odd number is selected length will be too long
-  return passwordArray.join("").slice(0,length);
 }
 
 //-----------------------------------------------
@@ -87,7 +97,6 @@ function popUp() {
 }
 
 function closePopUp() {
-  console.log("no");
   document.querySelector(".popUp").style.display = "none";
 }
 
@@ -147,6 +156,3 @@ function writePassword() {
 generateBtn.addEventListener("click", popUp);
 document.querySelector(".cancel-button").addEventListener("click", closePopUp);
 document.querySelector(".generate-now-button").addEventListener("click", writePassword);
-
-var userLength = document.querySelector(".count-input").value;
-console.log(userLength);
