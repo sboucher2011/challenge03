@@ -135,23 +135,40 @@ button[disabled] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: red;
+  background-color: white;
   padding: 10px;
   border-radius: 10px;
 }
 
 .popUp-Container h2 {
-  color: white;
+  color: hsl(206, 17%, 28%);
   margin: 5px;
   text-align: center;
 }
 
-.generate-button {
+.generate-button button {
   text-align: center;
-  color: red;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(0, 0%, 100%);
+  background: hsl(360, 91%, 36%);
+  padding: 15px;
   margin-top: 8px;
+  width: 200px;
+  border: none;
+  font-size: 22px;
 }
 
+.count-input {
+  border-radius: 8px;
+  height: 40px;
+  width: 40px;
+}
+
+.generate-button button:hover {
+  background: lightslategray;
+}
 
 
 
